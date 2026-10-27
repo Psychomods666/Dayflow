@@ -46,12 +46,13 @@ export default function App() {
   const [note, setNote] = useState(() => localStorage.getItem('dayflow-v2-note') || 'A little space to think clearly…')
   const [monthShift, setMonthShift] = useState(0)
   const [mobileNav, setMobileNav] = useState(false)
-  const [dark, setDark] = useState(false)
+  const [dark, setDark] = useState(() => localStorage.getItem('dayflow-v2-theme') === 'dark')
   const [toast, setToast] = useState('')
   const audioRef = useRef<{ ctx: AudioContext; nodes: AudioNode[]; gain: GainNode } | null>(null)
 
   useEffect(() => { localStorage.setItem('dayflow-v2-tasks', JSON.stringify(tasks)) }, [tasks])
   useEffect(() => { localStorage.setItem('dayflow-v2-note', note) }, [note])
+  useEffect(() => { localStorage.setItem('dayflow-v2-theme', dark ? 'dark' : 'light') }, [dark])
   useEffect(() => {
     if (!timerOn) return
     const id = window.setInterval(() => setSecondsLeft(s => {
@@ -115,7 +116,7 @@ export default function App() {
         audio.nodes.push(osc, filter, g)
       }
       if (id === 'rain') { makeNoise('pink'); tone(95, 'sine', .12); }
-      if (id === 'ocean') { makeNoise('brown'); tone(68, 'sine', .24); tone(0.09, 'sine', .1); }
+      if (id === 'ocean') { makeNoise('brown'); tone(68, 'sine', .18); tone(0.09, 'sine', .045); }
       if (id === 'forest') { makeNoise('pink'); tone(760, 'sine', .015); tone(1180, 'sine', .008, 7); }
       if (id === 'cafe') { makeNoise('white'); tone(180, 'triangle', .025); tone(310, 'sine', .012, 12); }
       if (id === 'white') { makeNoise('white'); }
