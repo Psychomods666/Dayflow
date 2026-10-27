@@ -50,3 +50,11 @@ Browser audio typically requires a user gesture to start. Background playback an
 3. Add true calendar integration and browser notifications only after permission flows are designed.
 4. Add accessibility checks and test with keyboard navigation, reduced motion, and mobile screen readers.
 5. Replace generated noise with licensed recordings and tune each sound layer's loop points and fade behavior.
+
+## Design (v2 — glass theme)
+
+- `src/glass.css` loads after `styles.css` and restyles every component: frosted glass panels, pastel gradient background, pill buttons, gradient accents.
+- Light and dark glass themes (Settings → Appearance). New accent palette.
+- Home: overview tiles, week strip, gradient focus card, gradient progress ring.
+- Phones: floating bottom bar with a centre "+" button (Home, Planner, New task, Sleep, More).
+- Welcome screen uses a blue-to-violet gradient.
